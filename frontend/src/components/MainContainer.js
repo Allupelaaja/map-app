@@ -9,7 +9,7 @@ function MainContainer(props) {
     const styles = {
         container: {
             display: 'flex',
-            height: '85%'
+            height: '95%'
         }
     }
 

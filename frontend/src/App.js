@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div style={{height: '100%'}}>
-      <Header />
+      {/* <Header /> */}
       <MainContainer markers={markers} setMarkers={setMarkers}/>
       <Footer />
     </div>

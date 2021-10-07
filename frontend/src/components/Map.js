@@ -1,8 +1,8 @@
 import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from "react-leaflet";
-import { useEffect } from 'react';
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import { Icon } from 'leaflet'
 import 'leaflet/dist/leaflet.css';
+import { useState } from "react";
 
 function Map(props) {
 
@@ -21,10 +21,31 @@ function Map(props) {
             console.log("marker removed")
         }
 
+        async function getAddressFromApi(lat, lng) {
+            return fetch('https://nominatim.openstreetmap.org/reverse.php?lat=' + lat + '&lon=' + lng + '&zoom=18&format=jsonv2')
+                    .then((response) => response.json())
+                    .then((data) => {
+                        return data})
+        }
+
+        async function addToMarkers(marker) {
+            const newAddress = await getAddressFromApi(marker.lat, marker.lng)
+            var addressString = ''
+            if (newAddress) {
+                if (newAddress.address.road && newAddress.address.house_number) {
+                    addressString = newAddress.address.road + ' ' + newAddress.address.house_number
+                } else if (newAddress.address.road) {
+                    addressString = newAddress.address.road
+                }
+            }
+            marker.address = addressString
+            setMarkers([...markers, marker]);
+        }
+
         useMapEvents({
             click(e) {
                 const newMarker = e.latlng
-                setMarkers([...markers, newMarker]);
+                addToMarkers(newMarker)
             },
         })
 
@@ -35,6 +56,7 @@ function Map(props) {
                         <Popup>
                             <div>
                                 <p>Marker is at {marker.lat}, {marker.lng}</p>
+                                {marker.address !== '' ? <p>The address is: {marker.address}</p> : <></>}
                                 <button onClick={() => removeMarker(marker)}>Remove marker</button>
                             </div>
                         </Popup>
@@ -44,6 +66,18 @@ function Map(props) {
         )
     }
 
+    const [mainWidth, setMainWidth] = useState('75%')
+
+    function onResize() {
+        if (window.innerWidth < 1000) {
+            setMainWidth('100%')
+        } else {
+            setMainWidth('75%')
+        }
+    }
+
+    window.addEventListener("resize", onResize);
+
     const styles = {
         map: {
             height: "100%",
@@ -52,7 +86,7 @@ function Map(props) {
         },
         main: {
             float: 'left',
-            width: '75%',
+            width: mainWidth,
             position: 'relative',
         }
     };
