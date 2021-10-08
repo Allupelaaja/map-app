@@ -78,7 +78,9 @@ function Sidebar(props) {
                 <h1>Maps-app</h1>
                 <div style={styles.buttonDiv}>
                     <p style={{ marginRight: '25px' }}>List of markers</p>
+                    {markers.length !== 0 ?
                     <button style={{ marginLeft: '25px' }} onClick={() => clearMarkers()}>Clear all markers</button>
+                    : <button disabled style={{ marginLeft: '25px' }}>Clear all markers</button>}
                 </div>
             </div>
             <div style={styles.markers}>
