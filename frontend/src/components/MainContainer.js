@@ -5,6 +5,8 @@ function MainContainer(props) {
 
     const markers = props.markers
     const setMarkers = props.setMarkers
+    const setMap = props.setMap
+    const map = props.map
 
     const styles = {
         container: {
@@ -15,8 +17,8 @@ function MainContainer(props) {
 
     return (
         <div style={styles.container}>
-            <Sidebar markers={markers} setMarkers={setMarkers} />
-            <Map markers={markers} setMarkers={setMarkers} />
+            <Sidebar markers={markers} setMarkers={setMarkers} map={map}/>
+            <Map markers={markers} setMarkers={setMarkers} setCurrMarker={props.setCurrMarker} setMap={setMap} setIsPopupVisible={props.setIsPopupVisible}/>
         </div>
     )
 }
