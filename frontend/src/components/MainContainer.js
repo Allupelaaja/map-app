@@ -1,5 +1,6 @@
 import Map from './Map'
 import Sidebar from './Sidebar';
+import Sidebarmobile from './Sidebar_mobile';
 
 function MainContainer(props) {
 
@@ -17,8 +18,12 @@ function MainContainer(props) {
 
     return (
         <div style={styles.container}>
-            <Sidebar markers={markers} setMarkers={setMarkers} map={map}/>
-            <Map markers={markers} setMarkers={setMarkers} setCurrMarker={props.setCurrMarker} setMap={setMap} setIsPopupVisible={props.setIsPopupVisible}/>
+            <Sidebar markers={markers} setMarkers={setMarkers} map={map} />
+            <Sidebarmobile markers={markers} setMarkers={setMarkers} map={map}
+                mapToggled={props.mapToggled} />
+            <Map markers={markers} setMarkers={setMarkers}
+                setCurrMarker={props.setCurrMarker} setMap={setMap} setIsPopupVisible={props.setIsPopupVisible}
+                mapToggled={props.mapToggled} setMapToggled={props.setMapToggled} />
         </div>
     )
 }

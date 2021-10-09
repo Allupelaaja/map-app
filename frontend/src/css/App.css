@@ -14,3 +14,51 @@ button {
 button:hover {
     background-color: rgb(225, 225, 225);
 }
+
+@media (max-width: 1920px) {
+    #sidebar {
+        display: block;
+    }
+    #sidebarmobile {
+        display: none;
+    }
+    #map {
+        width: 75%;
+    }
+    #listButton {
+        display: none;
+    }
+    #popupBox {
+        inset: 30%;
+    }
+}
+
+@media (max-width: 1000px) {
+    #sidebar {
+        display: none;
+    }
+    #sidebarmobile {
+        display: block;
+    }
+    #map {
+        width: 100%;
+    }
+    #listButton {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+        z-index: 15000;
+    }
+    #popupBox {
+        inset: 15%;
+    }
+    #popupText {
+        display: flex;
+        flex-direction: column;
+    }
+    #popupButton {
+        padding: 15px;
+    }
+}

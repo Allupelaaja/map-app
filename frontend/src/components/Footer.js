@@ -8,7 +8,7 @@ function Footer() {
             bottom: '0',
             left: '0',
             backgroundColor: '#9dc7d5',
-            zIndex: '1000',
+            zIndex: '15000',
             height: '5%',
         },
         footerText: {

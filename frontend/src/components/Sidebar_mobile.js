@@ -1,16 +1,21 @@
+import { useState, useEffect } from 'react';
 import MarkerInfo from './MarkerInfo';
 
-function Sidebar(props) {
+function Sidebar_mobile(props) {
+
+    const [sideIndex, setSideIndex] = useState('10000')
 
     const styles = {
         sidebar: {
             height: '100%',
+            position: 'absolute',
             top: '0',
             left: '0',
             textAlign: 'center',
             float: 'left',
             backgroundColor: 'lightblue',
-            width: '25%',
+            width: '100%',
+            zIndex: sideIndex,
         },
         marker: {
             backgroundColor: '#c1e7f3',
@@ -39,6 +44,15 @@ function Sidebar(props) {
     const map = props.map
     const markers = props.markers
     const setMarkers = props.setMarkers
+    const mapToggled = props.mapToggled
+
+    useEffect(() => {
+        if (mapToggled) {
+            setSideIndex('10000')
+        } else {
+            setSideIndex('-10000')
+        }
+    }, [mapToggled]);
 
     function clearMarkers() {
         setMarkers([])
@@ -50,7 +64,7 @@ function Sidebar(props) {
     }
 
     return (
-        <div style={styles.sidebar} id={'sidebar'}>
+        <div style={styles.sidebar} id={'sidebarmobile'}>
             <div style={styles.headerDiv}>
                 <h1 style={{ margin: '10px 0 0 0' }}>Maps-app</h1>
                 <div style={styles.buttonDiv}>
@@ -76,4 +90,4 @@ function Sidebar(props) {
     )
 }
 
-export default Sidebar
+export default Sidebar_mobile

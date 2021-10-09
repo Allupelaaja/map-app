@@ -13,36 +13,31 @@ function Popup(props) {
             bottom: '0',
             margin: 'auto',
             backgroundColor: 'rgba(0,0,0, 0.5)',
-            zIndex: '10000',
+            zIndex: '15000',
         },
         popupBox: {
             position: 'absolute',
-            inset: '35%',
-            margin: 'auto',
             backgroundColor: 'white',
             borderRadius: '15px',
-        },
-        popupText: {
-            marginBlockStart: '0.67em',
-            marginBlockEnd: '0.67em',
-            marginInlineStart: '0px',
-            marginInlineEnd: '0px',
+            overflowY: 'auto',
         },
         popupBoxContent: {
-            display: 'flex',
-            alignItems: 'center',
-            flexDirection: 'column',
+            left: '50%',
+            top: '50%',
+            position: 'absolute',
+            transform: 'translate(-50%, -50%)',
+            textAlign: 'center',
         }
     }
 
     const [markerName, setMarkerName] = useState('')
     const [markerStartTime, setMarkerStartTime] = useState('')
     const [markerStopTime, setMarkerStopTime] = useState('')
-    const setIsPopupVisible = props.setIsPopupVisible
     const markers = props.markers
     const setMarkers = props.setMarkers
     const currMarker = props.currMarker
     const setCurrMarker = props.setCurrMarker
+    const setIsPopupVisible = props.setIsPopupVisible
 
     async function getAddressFromApi(lat, lng) {
         return fetch('https://nominatim.openstreetmap.org/reverse.php?lat=' + lat + '&lon=' + lng + '&zoom=18&format=jsonv2')
@@ -65,24 +60,6 @@ function Popup(props) {
         marker.address = addressString
         setMarkers([...markers, marker]);
         setCurrMarker(null)
-        console.log(marker)
-    }
-
-    function timeComparison(sTime, eTime) {
-        const currentdate = new Date()
-        currentdate.setFullYear(1996)
-        currentdate.setMonth(2)
-        currentdate.setDate(13)
-        var starting = new Date(currentdate.toString().split(":")[0].slice(0,-2) + sTime)
-        var ending = new Date(currentdate.toString().split(":")[0].slice(0,-2) + eTime)
-
-        if (currentdate >= starting && currentdate < ending) {
-            return true
-        } else if (ending < starting && currentdate < ending) {
-            return true
-        } else {
-            return false
-        }
     }
 
     function handleSubmit(event) {
@@ -91,31 +68,30 @@ function Popup(props) {
         newMarker.name = markerName
         newMarker.startTime = markerStartTime
         newMarker.stopTime = markerStopTime
-        newMarker.isOpen = timeComparison(markerStartTime, markerStopTime)
         addToMarkers(newMarker)
         setIsPopupVisible(false)
     }
 
     return (
         <div style={styles.popupBackground} onClick={() => setIsPopupVisible(false)}>
-            <div style={styles.popupBox} onClick={(e) => e.stopPropagation()}>
-                <form onSubmit={handleSubmit}>
-                    <div style={styles.popupBoxContent}>
-                        <h1>Marker information</h1>
-                        <label style={styles.popupText}>
-                            Name:
-                            <input required type="text" name="name" value={markerName} onChange={event => { setMarkerName(event.target.value) }} />
-                        </label>
-                        <label style={styles.popupText}>
-                            Open from:
-                            <input required type="time" name="name" value={markerStartTime} onChange={event => { setMarkerStartTime(event.target.value) }} />
-                        </label>
-                        <label style={styles.popupText}>
-                            Open to:
-                            <input required type="time" name="name" value={markerStopTime} onChange={event => { setMarkerStopTime(event.target.value) }} />
-                        </label>
-                        <input type="submit" value="Submit" style={styles.popupText} />
-                    </div>
+            <div style={styles.popupBox} id={'popupBox'} onClick={(e) => e.stopPropagation()}>
+                <form onSubmit={handleSubmit} style={styles.popupBoxContent}>
+                    <h1>Marker information</h1>
+                    <p id={'popupText'}>
+                        Name:
+                        <input required type="text" name="name" value={markerName} onChange={event => { setMarkerName(event.target.value) }} />
+                    </p>
+                    <p id={'popupText'}>
+                        Open from:
+                        <input required type="time" name="name" value={markerStartTime} onChange={event => { setMarkerStartTime(event.target.value) }} />
+                    </p>
+                    <p id={'popupText'}>
+                        Open to:
+                        <input required type="time" name="name" value={markerStopTime} onChange={event => { setMarkerStopTime(event.target.value) }} />
+                    </p>
+                    <p>
+                        <input id={'popupButton'} type="submit" value="Submit" />
+                    </p>
                 </form>
             </div>
         </div>
