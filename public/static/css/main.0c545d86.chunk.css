@@ -1,2 +1,0 @@
-#root,body,html{margin:0;height:100%}body{font-family:Arial,sans-serif}button{border-radius:10px}button:hover{background-color:#e1e1e1}@media (max-width:1920px){#sidebar{display:block}#sidebarmobile{display:none}#map{width:75%}#listButton{display:none}#popupBox{inset:30%}}@media (max-width:1000px){#sidebar{display:none}#sidebarmobile{display:block}#map{width:100%}#listButton{display:block;position:absolute;top:20px;right:20px;padding:10px;z-index:15000}#popupBox{inset:5%}}
-/*# sourceMappingURL=main.0c545d86.chunk.css.map */
