@@ -22,7 +22,7 @@ function Sidebar(props) {
             marginLeft: 'auto',
             marginRight: 'auto',
             borderRadius: '15px',
-            backgroundColor: 'rgb(159 206 221)',
+            backgroundColor: 'rgb(159, 206, 221)',
             overflowY: 'auto',
             maxHeight: '75%',
             width: '95%'
