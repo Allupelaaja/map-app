@@ -27,7 +27,7 @@ function Sidebar_mobile(props) {
             marginLeft: 'auto',
             marginRight: 'auto',
             borderRadius: '15px',
-            backgroundColor: 'rgb(159 206 221)',
+            backgroundColor: '#9fcedd',
             overflowY: 'auto',
             maxHeight: '75%',
             width: '95%'
