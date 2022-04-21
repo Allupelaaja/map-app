@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/react-in-jsx-scope */
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import { useEffect } from 'react';
 import AddMarkerToClick from './AddMarkerToClick'
@@ -53,6 +55,6 @@ function Map(props) {
             </div>
         </div>
     );
-};
+}
 
 export default Map

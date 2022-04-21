@@ -1,3 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/prop-types */
 import MarkerInfo from './MarkerInfo';
 
 function Sidebar(props) {
@@ -66,7 +68,7 @@ function Sidebar(props) {
                         <MarkerInfo marker={marker} markers={markers} setMarkers={setMarkers} />
                     </div>
                 ) : (
-                    <div>
+                    <div style="background-color: #9fcedd">
                         <p>Nothing here yet...</p>
                         <p>Click on the map to add new markers</p>
                     </div>)

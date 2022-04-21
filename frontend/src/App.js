@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import Footer from './components/Footer'
 import Popup from './components/Popup'
 import MainContainer from './components/MainContainer'
