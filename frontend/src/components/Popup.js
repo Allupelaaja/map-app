@@ -51,10 +51,12 @@ function Popup(props) {
         const newAddress = await getAddressFromApi(marker.lat, marker.lng)
         var addressString = ''
         if (newAddress) {
-            if (newAddress.address.road && newAddress.address.house_number) {
-                addressString = newAddress.address.road + ' ' + newAddress.address.house_number
-            } else if (newAddress.address.road) {
-                addressString = newAddress.address.road
+            if (newAddress.address) {
+                if (newAddress.address.road && newAddress.address.house_number) {
+                    addressString = newAddress.address.road + ' ' + newAddress.address.house_number
+                } else if (newAddress.address.road) {
+                    addressString = newAddress.address.road
+                }
             }
         }
         marker.address = addressString
