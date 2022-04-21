@@ -1,5 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 function Popup(props) {
@@ -42,7 +40,6 @@ function Popup(props) {
     const setIsPopupVisible = props.setIsPopupVisible
 
     async function getAddressFromApi(lat, lng) {
-        // eslint-disable-next-line compat/compat
         return fetch('https://nominatim.openstreetmap.org/reverse.php?lat=' + lat + '&lon=' + lng + '&zoom=18&format=jsonv2')
             .then((response) => response.json())
             .then((data) => {
